@@ -1,0 +1,22 @@
+   <div class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            @for (column of columns; track column) {
+              <th [style.width]="getColumnWidth(column)">{{ column }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of data; track row; let idx = $index) {
+            <tr>
+              @for (column of columns; track column) {
+                <td>
+                  <ng-container *ngTemplateOutlet="getCellTemplate(column, row)"></ng-container>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>

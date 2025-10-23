@@ -1,0 +1,32 @@
+<!-- sidebar.component.html -->
+<aside class="sidebar" [class.open]="isOpen()">
+  <div class="sidebar-header">
+    <h1 class="logo">{{ isOpen() ? 'Market Dashboard' : 'MD' }}</h1>
+  </div>
+
+  <nav class="sidebar-nav">
+    @for (item of navItems; track item.route) {
+      <a
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.route === '/dashboard' }"
+        class="nav-item"
+        [title]="!isOpen() ? item.label : ''"
+      >
+        <span class="nav-icon">{{ item.icon }}</span>
+        @if (isOpen()) {
+          <span class="nav-label">{{ item.label }}</span>
+        }
+      </a>
+    }
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="logout-btn" (click)="logout()" [title]="!isOpen() ? 'Logout' : ''">
+      <span class="nav-icon">🚪</span>
+      @if (isOpen()) {
+        <span class="nav-label">Logout</span>
+      }
+    </button>
+  </div>
+</aside>

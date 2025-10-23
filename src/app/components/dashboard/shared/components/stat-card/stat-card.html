@@ -1,0 +1,7 @@
+<div class="stat-card" [class.positive]="isPositive" [class.negative]="!isPositive && value < 0">
+      <div class="stat-label">{{ label }}</div>
+      <div class="stat-value">{{ formattedValue }}</div>
+      @if (subtitle) {
+        <div class="stat-subtitle">{{ subtitle }}</div>
+      }
+    </div>

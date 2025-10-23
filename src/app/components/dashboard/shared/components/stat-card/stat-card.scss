@@ -1,0 +1,50 @@
+    .stat-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.05));
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: rgba(99, 102, 241, 0.4);
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+      }
+
+      &.positive {
+        border-color: rgba(34, 197, 94, 0.3);
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05));
+      }
+
+      &.negative {
+        border-color: rgba(239, 68, 68, 0.3);
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+      }
+
+      .stat-label {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-value {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.25rem;
+
+        .stat-card.positive & {
+          color: #86efac;
+        }
+
+        .stat-card.negative & {
+          color: #fca5a5;
+        }
+      }
+
+      .stat-subtitle {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
