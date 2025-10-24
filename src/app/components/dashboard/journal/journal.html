@@ -1,0 +1,88 @@
+<p>journal works!</p>
+    <div class="journal-page">
+      <h1>Trading Journal</h1>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <app-stat-card
+          label="Total Trades"
+          [value]="stats.totalTrades"
+          [isPositive]="true"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Winners"
+          [value]="stats.winners"
+          [isPositive]="true"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Losers"
+          [value]="stats.losers"
+          [isPositive]="false"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Win Rate"
+          [value]="stats.winRate"
+          format="percent"
+          [isPositive]="true"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Total Profit"
+          [value]="stats.totalProfit"
+          format="currency"
+          [isPositive]="stats.totalProfit >= 0"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Avg Trade"
+          [value]="stats.avgTrade"
+          format="currency"
+          [isPositive]="stats.avgTrade >= 0"
+        ></app-stat-card>
+      </div>
+
+      <!-- Trades Table -->
+      <app-card title="Recent Trades" subtitle="All trading activity">
+        <div class="table-wrapper">
+          <table class="journal-table">
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Side</th>
+                <th>Qty</th>
+                <th>Entry</th>
+                <th>Exit</th>
+                <th>Profit</th>
+                <th>%</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (trade of trades; track trade.id) {
+                <tr [class.winning]="trade.profit > 0">
+                  <td class="symbol">{{ trade.symbol }}</td>
+                  <td>
+                    <span class="badge" [class.buy]="trade.side === 'BUY'" [class.sell]="trade.side === 'SELL'">
+                      {{ trade.side }}
+                    </span>
+                  </td>
+                  <td>{{ trade.quantity }}</td>
+                  <td class="price">${{ trade.entryPrice.toFixed(2) }}</td>
+                  <td class="price">${{ trade.exitPrice.toFixed(2) }}</td>
+                  <td [class.profit]="trade.profit > 0" [class.loss]="trade.profit < 0">
+                    {{ trade.profit > 0 ? '+' : '' }}${{ trade.profit.toFixed(2) }}
+                  </td>
+                  <td [class.profit]="trade.profitPercent > 0" [class.loss]="trade.profitPercent < 0">
+                    {{ trade.profitPercent > 0 ? '+' : '' }}{{ trade.profitPercent.toFixed(2) }}%
+                  </td>
+                  <td class="date">{{ trade.date | date: 'MMM dd' }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </app-card>
+    </div>

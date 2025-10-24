@@ -1,0 +1,91 @@
+    <div class="analytics-page">
+      <h1>Analytics & Performance</h1>
+
+      <!-- Key Metrics -->
+      <div class="stats-grid">
+        <app-stat-card
+          label="Total Return"
+          [value]="metrics.totalReturn"
+          format="percent"
+          [isPositive]="true"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Win Rate"
+          [value]="metrics.winRate"
+          format="percent"
+          [isPositive]="true"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Profit Factor"
+          [value]="metrics.profitFactor"
+          [isPositive]="metrics.profitFactor > 1"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Max Drawdown"
+          [value]="metrics.maxDrawdown"
+          format="percent"
+          [isPositive]="false"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Sharpe Ratio"
+          [value]="metrics.sharpeRatio"
+          [isPositive]="true"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Avg Trade"
+          [value]="metrics.avgTrade"
+          format="currency"
+          [isPositive]="metrics.avgTrade > 0"
+        ></app-stat-card>
+      </div>
+
+      <!-- Charts Grid -->
+      <div class="charts-grid">
+        <!-- Cumulative Profit -->
+        <app-card title="Cumulative Profit" subtitle="Daily P/L progression">
+          <app-chart [data]="profitChartData" type="line"></app-chart>
+        </app-card>
+
+        <!-- Win/Loss Distribution -->
+        <app-card title="Trade Statistics">
+          <div class="stats-breakdown">
+            <div class="stat-item">
+              <div class="stat-title">Total Trades</div>
+              <div class="stat-big">{{ metrics.totalTrades }}</div>
+            </div>
+            <div class="stat-item winning">
+              <div class="stat-title">Winning Trades</div>
+              <div class="stat-big">{{ metrics.winningTrades }}</div>
+            </div>
+            <div class="stat-item losing">
+              <div class="stat-title">Losing Trades</div>
+              <div class="stat-big">{{ metrics.losingTrades }}</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-title">Break Even</div>
+              <div class="stat-big">{{ metrics.breakEven }}</div>
+            </div>
+          </div>
+        </app-card>
+      </div>
+
+      <!-- Monthly Summary -->
+      <app-card title="Monthly Summary">
+        <div class="monthly-grid">
+          @for (month of monthlySummary; track month.month) {
+            <div class="monthly-item">
+              <div class="month-name">{{ month.month }}</div>
+              <div class="month-value" [class.positive]="month.profit > 0">
+                {{ month.profit > 0 ? '+' : '' }}${{ month.profit.toFixed(0) }}
+              </div>
+              <div class="month-trades">{{ month.trades }} trades</div>
+            </div>
+          }
+        </div>
+      </app-card>
+    </div>

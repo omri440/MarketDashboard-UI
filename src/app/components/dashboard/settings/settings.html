@@ -1,0 +1,117 @@
+<div class="settings-page">
+      <h1>Settings</h1>
+
+      <!-- Account Settings -->
+      <app-card title="Account" subtitle="Manage your account">
+        <div class="settings-section">
+          <div class="setting-item">
+            <div class="setting-label">Username</div>
+            <div class="setting-value">{{ currentUser() }}</div>
+          </div>
+          <div class="setting-item">
+            <div class="setting-label">Role</div>
+            <div class="setting-value">{{ currentRole() || 'User' }}</div>
+          </div>
+          <button class="btn btn-secondary">Change Password</button>
+        </div>
+      </app-card>
+
+      <!-- Notification Settings -->
+      <app-card title="Notifications" subtitle="Control your alerts">
+        <div class="settings-section">
+          <div class="toggle-item">
+            <div>
+              <div class="toggle-label">Price Alerts</div>
+              <div class="toggle-description">Get notified of price movements</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-item">
+            <div>
+              <div class="toggle-label">Trade Alerts</div>
+              <div class="toggle-description">Notifications for trade execution</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="toggle-item">
+            <div>
+              <div class="toggle-label">Daily Summary</div>
+              <div class="toggle-description">Daily performance summary</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </app-card>
+
+      <!-- Display Settings -->
+      <app-card title="Display" subtitle="Customize your experience">
+        <div class="settings-section">
+          <div class="setting-group">
+            <label class="setting-label">Theme</label>
+            <select class="select">
+              <option>Dark (Current)</option>
+              <option>Light</option>
+              <option>Auto</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label class="setting-label">Chart Type</label>
+            <select class="select">
+              <option>Candlestick</option>
+              <option>Line</option>
+              <option>Bar</option>
+            </select>
+          </div>
+
+          <div class="setting-group">
+            <label class="setting-label">Timezone</label>
+            <select class="select">
+              <option>UTC-5 (EST)</option>
+              <option>UTC (GMT)</option>
+              <option>UTC+1 (CET)</option>
+            </select>
+          </div>
+        </div>
+      </app-card>
+
+      <!-- Privacy & Security -->
+      <app-card title="Privacy & Security" subtitle="Manage your data">
+        <div class="settings-section">
+          <div class="security-item">
+            <div>
+              <div class="item-title">Two-Factor Authentication</div>
+              <div class="item-description">Add an extra layer of security</div>
+            </div>
+            <button class="btn btn-secondary">Enable</button>
+          </div>
+
+          <div class="security-item">
+            <div>
+              <div class="item-title">Export Data</div>
+              <div class="item-description">Download your trading data</div>
+            </div>
+            <button class="btn btn-secondary">Export</button>
+          </div>
+
+          <div class="security-item danger">
+            <div>
+              <div class="item-title">Delete Account</div>
+              <div class="item-description">Permanently delete your account</div>
+            </div>
+            <button class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </app-card>
+    </div>

@@ -1,0 +1,118 @@
+    .journal-page {
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 2rem;
+      }
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media (max-width: 640px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(99, 102, 241, 0.5);
+        border-radius: 3px;
+      }
+    }
+
+    .journal-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+
+      thead {
+        background: rgba(99, 102, 241, 0.1);
+
+        th {
+          padding: 1rem;
+          text-align: left;
+          color: rgba(255, 255, 255, 0.8);
+          font-weight: 600;
+          border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+          transition: background 0.2s;
+
+          &:hover {
+            background: rgba(99, 102, 241, 0.05);
+          }
+
+          &.winning {
+            background: rgba(34, 197, 94, 0.03);
+          }
+
+          td {
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+
+            &.symbol {
+              font-weight: 600;
+              color: #fff;
+            }
+
+            &.price {
+              font-family: 'Courier New', monospace;
+              color: rgba(255, 255, 255, 0.7);
+            }
+
+            &.profit {
+              color: #86efac;
+              font-weight: 600;
+            }
+
+            &.loss {
+              color: #fca5a5;
+              font-weight: 600;
+            }
+
+            &.date {
+              font-size: 0.85rem;
+              color: rgba(255, 255, 255, 0.6);
+            }
+          }
+        }
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+
+        &.buy {
+          background: rgba(34, 197, 94, 0.2);
+          color: #86efac;
+        }
+
+        &.sell {
+          background: rgba(239, 68, 68, 0.2);
+          color: #fca5a5;
+        }
+      }
+    }

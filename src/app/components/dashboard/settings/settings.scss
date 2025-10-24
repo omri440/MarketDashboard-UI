@@ -1,0 +1,197 @@
+ .settings-page {
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 2rem;
+      }
+
+      app-card {
+        margin-bottom: 2rem;
+      }
+    }
+
+    .settings-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .setting-label {
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 0.25rem;
+      }
+
+      .setting-value {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+      }
+    }
+
+    .toggle-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+
+      .toggle-label {
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 0.25rem;
+      }
+
+      .toggle-description {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+
+      input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+
+        &:checked + .toggle-slider {
+          background: #6366f1;
+
+          &:before {
+            transform: translateX(22px);
+          }
+        }
+      }
+
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.2);
+        transition: 0.3s;
+        border-radius: 28px;
+
+        &:before {
+          content: '';
+          position: absolute;
+          height: 24px;
+          width: 24px;
+          left: 2px;
+          bottom: 2px;
+          background-color: white;
+          transition: 0.3s;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .setting-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1rem 0;
+
+      .setting-label {
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .select {
+        padding: 0.75rem;
+        background: rgba(99, 102, 241, 0.1);
+        color: #fff;
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        &:focus {
+          outline: none;
+          border-color: #6366f1;
+          background: rgba(99, 102, 241, 0.15);
+        }
+
+        option {
+          background: #0f172a;
+          color: #fff;
+        }
+      }
+    }
+
+    .security-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background: rgba(99, 102, 241, 0.05);
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      border-radius: 0.75rem;
+
+      &.danger {
+        background: rgba(239, 68, 68, 0.05);
+        border-color: rgba(239, 68, 68, 0.1);
+      }
+
+      .item-title {
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 0.25rem;
+      }
+
+      .item-description {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+
+      &.btn-secondary {
+        background: rgba(99, 102, 241, 0.1);
+        color: #6366f1;
+        border: 1px solid rgba(99, 102, 241, 0.2);
+
+        &:hover {
+          background: rgba(99, 102, 241, 0.2);
+        }
+      }
+
+      &.btn-danger {
+        background: rgba(239, 68, 68, 0.1);
+        color: #fca5a5;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+
+        &:hover {
+          background: rgba(239, 68, 68, 0.2);
+        }
+      }
+    }

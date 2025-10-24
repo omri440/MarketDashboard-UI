@@ -1,0 +1,117 @@
+  .analytics-page {
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 2rem;
+      }
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      @media (max-width: 640px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stats-breakdown {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+
+      .stat-item {
+        padding: 1.5rem;
+        background: rgba(99, 102, 241, 0.05);
+        border: 1px solid rgba(99, 102, 241, 0.15);
+        border-radius: 0.75rem;
+        text-align: center;
+
+        &.winning {
+          background: rgba(34, 197, 94, 0.05);
+          border-color: rgba(34, 197, 94, 0.15);
+        }
+
+        &.losing {
+          background: rgba(239, 68, 68, 0.05);
+          border-color: rgba(239, 68, 68, 0.15);
+        }
+
+        .stat-title {
+          font-size: 0.875rem;
+          color: rgba(255, 255, 255, 0.6);
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+        }
+
+        .stat-big {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #fff;
+
+          .stat-item.winning & {
+            color: #86efac;
+          }
+
+          .stat-item.losing & {
+            color: #fca5a5;
+          }
+        }
+      }
+    }
+
+    .monthly-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+
+      .monthly-item {
+        padding: 1rem;
+        background: rgba(99, 102, 241, 0.05);
+        border: 1px solid rgba(99, 102, 241, 0.15);
+        border-radius: 0.75rem;
+        text-align: center;
+
+        .month-name {
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.6);
+          margin-bottom: 0.5rem;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+
+        .month-value {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #fff;
+          margin-bottom: 0.25rem;
+
+          &.positive {
+            color: #86efac;
+          }
+        }
+
+        .month-trades {
+          font-size: 0.75rem;
+          color: rgba(255, 255, 255, 0.5);
+        }
+      }
+    }

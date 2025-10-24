@@ -1,0 +1,18 @@
+<div class="dashboard-container">
+      <button 
+    class="menu-btn-sticky" 
+    (click)="toggleSidebar()" 
+    title="Toggle sidebar"
+  >
+    ☰
+  </button>
+  <app-sidebar [isOpen]="sidebarOpen" (toggle)="toggleSidebar()"></app-sidebar>
+  
+  <div class="dashboard-main" [class.sidebar-collapsed]="!sidebarOpen()">
+    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
+    
+    <main class="dashboard-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

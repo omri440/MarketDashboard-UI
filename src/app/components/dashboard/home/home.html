@@ -1,0 +1,78 @@
+    <div class="home-page">
+      <h1>Overview</h1>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <app-stat-card
+          label="Total Portfolio Value"
+          [value]="portfolioSummary.totalValue"
+          format="currency"
+          [isPositive]="true"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Total P/L"
+          [value]="portfolioSummary.totalPL"
+          format="currency"
+          [isPositive]="portfolioSummary.totalPL >= 0"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Return %"
+          [value]="portfolioSummary.plPercent"
+          format="percent"
+          [isPositive]="portfolioSummary.plPercent >= 0"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Holdings"
+          [value]="portfolioSummary.holdings"
+          [isPositive]="true"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Win Rate"
+          [value]="journalStats.winRate"
+          format="percent"
+          [isPositive]="true"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Total Trades"
+          [value]="journalStats.totalTrades"
+          [isPositive]="true"
+        ></app-stat-card>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="charts-grid">
+        <app-card title="Cumulative Profit" subtitle="Daily performance">
+          <app-chart
+            [data]="chartData"
+            type="line"
+          ></app-chart>
+        </app-card>
+      </div>
+
+      <!-- Quick Actions -->
+      <app-card title="Quick Stats">
+        <div class="quick-stats">
+          <div class="quick-stat">
+            <span class="label">Winners</span>
+            <span class="value">{{ journalStats.winners }}</span>
+          </div>
+          <div class="quick-stat">
+            <span class="label">Losers</span>
+            <span class="value">{{ journalStats.losers }}</span>
+          </div>
+          <div class="quick-stat">
+            <span class="label">Avg Trade</span>
+            <span class="value">${{ journalStats.avgTrade.toFixed(2) }}</span>
+          </div>
+          <div class="quick-stat">
+            <span class="label">Total Profit</span>
+            <span class="value profitable">{{ journalStats.totalProfit > 0 ? '+' : '' }}${{ journalStats.totalProfit.toFixed(0) }}</span>
+          </div>
+        </div>
+      </app-card>
+    </div>

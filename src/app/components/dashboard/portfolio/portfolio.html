@@ -1,0 +1,86 @@
+    <div class="portfolio-page">
+      <h1>Portfolio</h1>
+
+      <!-- Summary Stats -->
+      <div class="stats-grid">
+        <app-stat-card
+          label="Total Value"
+          [value]="summary.totalValue"
+          format="currency"
+          [isPositive]="true"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Total P/L"
+          [value]="summary.totalPL"
+          format="currency"
+          [isPositive]="summary.totalPL >= 0"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Return %"
+          [value]="summary.returnPercent"
+          format="percent"
+          [isPositive]="summary.returnPercent >= 0"
+        ></app-stat-card>
+
+        <app-stat-card
+          label="Holdings"
+          [value]="holdings.length"
+          [isPositive]="true"
+        ></app-stat-card>
+      </div>
+
+      <!-- Holdings Table -->
+      <app-card title="Current Holdings" subtitle="Asset allocation">
+        <div class="table-wrapper">
+          <table class="portfolio-table">
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Qty</th>
+                <th>Avg Price</th>
+                <th>Current Price</th>
+                <th>Value</th>
+                <th>P/L</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (holding of holdings; track holding.symbol) {
+                <tr>
+                  <td class="symbol">{{ holding.symbol }}</td>
+                  <td>{{ holding.quantity }}</td>
+                  <td class="price">${{ holding.avgPrice.toFixed(2) }}</td>
+                  <td class="price">${{ holding.currentPrice.toFixed(2) }}</td>
+                  <td class="value">${{ holding.value.toLocaleString('en-US', { maximumFractionDigits: 2 }) }}</td>
+                  <td [class.profit]="holding.pl > 0" [class.loss]="holding.pl < 0">
+                    {{ holding.pl > 0 ? '+' : '' }}${{ holding.pl.toFixed(2) }}
+                  </td>
+                  <td [class.profit]="holding.plPercent > 0" [class.loss]="holding.plPercent < 0">
+                    {{ holding.plPercent > 0 ? '+' : '' }}{{ holding.plPercent.toFixed(2) }}%
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </app-card>
+
+      <!-- Allocation Chart -->
+      <app-card title="Allocation" subtitle="By symbol">
+        <div class="allocation-grid">
+          @for (holding of holdings; track holding.symbol) {
+            <div class="allocation-item">
+              <div class="allocation-header">
+                <span class="symbol">{{ holding.symbol }}</span>
+                <span class="percent">{{ ((holding.value / summary.totalValue) * 100).toFixed(1) }}%</span>
+              </div>
+              <div class="allocation-bar">
+                <div class="allocation-fill" [style.width.%]="(holding.value / summary.totalValue) * 100"></div>
+              </div>
+            </div>
+          }
+        </div>
+      </app-card>
+    </div>
