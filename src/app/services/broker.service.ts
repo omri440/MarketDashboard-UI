@@ -14,7 +14,8 @@ import {
   BrokerPosition,
   BrokerTrade,
   PortfolioSummary,
-  BrokerBalance
+  BrokerBalance,
+  StockQuote
 } from '../models/broker.model';
 
 @Injectable({
@@ -254,6 +255,19 @@ export class BrokerService {
     }).pipe(
       catchError(error => {
         console.error('Failed to fetch balance:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  /**
+   * Get live quote for a specific stock symbol
+   */
+  getStockQuote(symbol: string): Observable<StockQuote> {
+    return this.http.get<StockQuote>(`${this.apiUrl}/quote/${symbol}`).pipe(
+      catchError(error => {
+        const errorMessage = error.error?.detail || `Failed to get quote for ${symbol}`;
+        console.error('Failed to fetch stock quote:', errorMessage);
         return throwError(() => error);
       })
     );

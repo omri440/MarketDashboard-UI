@@ -93,3 +93,16 @@ export interface BrokerBalance {
   total_value: number;
   buying_power: number;
 }
+
+// Stock quote from broker
+export interface StockQuote {
+  symbol: string;
+  last: number | null;
+  bid: number | null;
+  ask: number | null;
+  volume: number | null;
+  high: number | null;
+  low: number | null;
+  close: number | null;
+  timestamp: string;
+}

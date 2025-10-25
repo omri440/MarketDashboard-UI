@@ -57,6 +57,83 @@
         ></app-stat-card>
       </div>
 
+      <!-- Stock Quote Lookup -->
+      <app-card title="Stock Quote Lookup" subtitle="Get real-time quote from your broker">
+        <div class="quote-lookup">
+          <div class="lookup-input-group">
+            <input
+              type="text"
+              [(ngModel)]="symbolInput"
+              (keydown)="onEnterKey($event)"
+              placeholder="Enter symbol (e.g., AAPL, GOOGL, TSLA)"
+              class="symbol-input"
+              [disabled]="isLoadingQuote()"
+            />
+            <button
+              (click)="fetchQuote()"
+              [disabled]="isLoadingQuote()"
+              class="fetch-button"
+            >
+              {{ isLoadingQuote() ? 'Loading...' : 'Get Quote' }}
+            </button>
+          </div>
+
+          @if (quoteError()) {
+            <div class="quote-error">
+              ⚠️ {{ quoteError() }}
+            </div>
+          }
+
+          @if (stockQuote()) {
+            <div class="quote-display">
+              <div class="quote-header">
+                <h3>{{ stockQuote()!.symbol }}</h3>
+                <span class="quote-timestamp">
+                  {{ stockQuote()!.timestamp | date: 'short' }}
+                </span>
+              </div>
+
+              <div class="quote-grid">
+                <div class="quote-item main-price">
+                  <span class="label">Last Price</span>
+                  <span class="value">${{ stockQuote()!.last?.toFixed(2) || 'N/A' }}</span>
+                </div>
+
+                <div class="quote-item">
+                  <span class="label">Bid</span>
+                  <span class="value">${{ stockQuote()!.bid?.toFixed(2) || 'N/A' }}</span>
+                </div>
+
+                <div class="quote-item">
+                  <span class="label">Ask</span>
+                  <span class="value">${{ stockQuote()!.ask?.toFixed(2) || 'N/A' }}</span>
+                </div>
+
+                <div class="quote-item">
+                  <span class="label">High</span>
+                  <span class="value">${{ stockQuote()!.high?.toFixed(2) || 'N/A' }}</span>
+                </div>
+
+                <div class="quote-item">
+                  <span class="label">Low</span>
+                  <span class="value">${{ stockQuote()!.low?.toFixed(2) || 'N/A' }}</span>
+                </div>
+
+                <div class="quote-item">
+                  <span class="label">Close</span>
+                  <span class="value">${{ stockQuote()!.close?.toFixed(2) || 'N/A' }}</span>
+                </div>
+
+                <div class="quote-item">
+                  <span class="label">Volume</span>
+                  <span class="value">{{ stockQuote()!.volume?.toLocaleString() || 'N/A' }}</span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </app-card>
+
       <!-- Charts Section -->
       <div class="charts-grid">
         <app-card title="Cumulative Profit" subtitle="Daily performance">
