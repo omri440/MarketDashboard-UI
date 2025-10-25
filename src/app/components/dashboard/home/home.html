@@ -1,5 +1,18 @@
     <div class="home-page">
-      <h1>Overview</h1>
+      <div class="page-header">
+        <h1>Overview</h1>
+        @if (isUsingRealData()) {
+          <span class="data-source-badge real-data">
+            <span class="badge-icon">●</span>
+            Live Broker Data
+          </span>
+        } @else {
+          <span class="data-source-badge mock-data">
+            <span class="badge-icon">○</span>
+            Demo Data
+          </span>
+        }
+      </div>
 
       <!-- Stats Grid -->
       <div class="stats-grid">

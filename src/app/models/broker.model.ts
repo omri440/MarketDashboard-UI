@@ -49,3 +49,47 @@ export interface LiveQuote {
   change_percent: number;
   timestamp: string;
 }
+
+// Portfolio Position from broker
+export interface BrokerPosition {
+  id?: number;
+  broker_account_id: number;
+  symbol: string;
+  quantity: number;
+  avg_price: number;
+  current_price: number;
+  market_value: number;
+  unrealized_pnl: number;
+  unrealized_pnl_percent: number;
+  last_updated?: string;
+}
+
+// Trade from broker
+export interface BrokerTrade {
+  id?: number;
+  broker_account_id: number;
+  symbol: string;
+  side: 'BUY' | 'SELL';
+  quantity: number;
+  price: number;
+  commission: number;
+  execution_time: string;
+  order_id?: string;
+}
+
+// Portfolio summary
+export interface PortfolioSummary {
+  total_value: number;
+  total_pnl: number;
+  total_pnl_percent: number;
+  cash_balance: number;
+  positions_count: number;
+}
+
+// Broker balance
+export interface BrokerBalance {
+  cash_balance: number;
+  stock_value: number;
+  total_value: number;
+  buying_power: number;
+}

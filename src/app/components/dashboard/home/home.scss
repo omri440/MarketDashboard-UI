@@ -1,9 +1,63 @@
 .home-page {
-      h1 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #fff;
+      .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 2rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        h1 {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #fff;
+          margin: 0;
+        }
+
+        .data-source-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.5rem 1rem;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: 600;
+          transition: all 0.3s ease;
+
+          .badge-icon {
+            font-size: 0.7rem;
+            animation: pulse 2s ease-in-out infinite;
+          }
+
+          &.real-data {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+
+            .badge-icon {
+              color: #22c55e;
+            }
+          }
+
+          &.mock-data {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+
+            .badge-icon {
+              color: #fbbf24;
+            }
+          }
+        }
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
       }
     }
 
