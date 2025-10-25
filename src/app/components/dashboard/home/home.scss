@@ -33,6 +33,25 @@
       }
     }
 
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+      }
+
+      .live-quote-container {
+        min-width: 280px;
+
+        @media (max-width: 1024px) {
+          min-width: auto;
+        }
+      }
+    }
+
     .quick-stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

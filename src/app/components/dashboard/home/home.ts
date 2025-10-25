@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Card } from '../shared/components/card/card';
 import { StatCard } from '../shared/components/stat-card/stat-card';
 import { Chart } from '../shared/components/chart/chart';
+import { LiveQuoteComponent } from '../shared/components/live-quote/live-quote';
 import { MockDataService } from '../services/mock-data.service';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule,Card,StatCard,Chart],
+  imports: [CommonModule, Card, StatCard, Chart, LiveQuoteComponent],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })

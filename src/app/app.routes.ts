@@ -51,6 +51,12 @@ export const routes: Routes = [
         data: { title: 'Analytics' }
       },
       {
+        path: 'broker',
+        loadComponent: () =>
+          import('./components/dashboard/broker/broker').then(m => m.BrokerComponent),
+        data: { title: 'Broker Connections' }
+      },
+      {
         path: 'settings',
         loadComponent: () =>
           import('./components/dashboard/settings/settings').then(m => m.Settings),

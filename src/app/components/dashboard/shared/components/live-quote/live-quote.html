@@ -1,0 +1,38 @@
+<div class="live-quote" [class.compact]="compact" [class.positive]="isPositive" [class.negative]="!isPositive">
+  @if (loading()) {
+    <div class="loading">
+      <div class="spinner-small"></div>
+      <span>Loading...</span>
+    </div>
+  } @else if (quote()) {
+    <div class="quote-content">
+      <div class="quote-header">
+        <span class="symbol">{{ quote()!.symbol }}</span>
+        <span class="live-indicator">● LIVE</span>
+      </div>
+
+      <div class="quote-price">
+        <span class="price">${{ formattedPrice }}</span>
+      </div>
+
+      <div class="quote-change">
+        <span class="change" [class.positive]="isPositive" [class.negative]="!isPositive">
+          {{ formattedChange }}
+        </span>
+        <span class="change-percent" [class.positive]="isPositive" [class.negative]="!isPositive">
+          {{ formattedChangePercent }}
+        </span>
+      </div>
+
+      @if (!compact) {
+        <div class="quote-time">
+          Updated: {{ quote()!.timestamp | date: 'short' }}
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="error">
+      <span>Failed to load quote</span>
+    </div>
+  }
+</div>

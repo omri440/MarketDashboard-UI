@@ -54,25 +54,32 @@
         </app-card>
       </div>
 
-      <!-- Quick Actions -->
-      <app-card title="Quick Stats">
-        <div class="quick-stats">
-          <div class="quick-stat">
-            <span class="label">Winners</span>
-            <span class="value">{{ journalStats.winners }}</span>
+      <!-- Quick Stats and Live Quote Grid -->
+      <div class="bottom-grid">
+        <app-card title="Quick Stats">
+          <div class="quick-stats">
+            <div class="quick-stat">
+              <span class="label">Winners</span>
+              <span class="value">{{ journalStats.winners }}</span>
+            </div>
+            <div class="quick-stat">
+              <span class="label">Losers</span>
+              <span class="value">{{ journalStats.losers }}</span>
+            </div>
+            <div class="quick-stat">
+              <span class="label">Avg Trade</span>
+              <span class="value">${{ journalStats.avgTrade.toFixed(2) }}</span>
+            </div>
+            <div class="quick-stat">
+              <span class="label">Total Profit</span>
+              <span class="value profitable">{{ journalStats.totalProfit > 0 ? '+' : '' }}${{ journalStats.totalProfit.toFixed(0) }}</span>
+            </div>
           </div>
-          <div class="quick-stat">
-            <span class="label">Losers</span>
-            <span class="value">{{ journalStats.losers }}</span>
-          </div>
-          <div class="quick-stat">
-            <span class="label">Avg Trade</span>
-            <span class="value">${{ journalStats.avgTrade.toFixed(2) }}</span>
-          </div>
-          <div class="quick-stat">
-            <span class="label">Total Profit</span>
-            <span class="value profitable">{{ journalStats.totalProfit > 0 ? '+' : '' }}${{ journalStats.totalProfit.toFixed(0) }}</span>
-          </div>
+        </app-card>
+
+        <!-- Live BTCUSD Price Widget -->
+        <div class="live-quote-container">
+          <app-live-quote symbol="BTCUSD"></app-live-quote>
         </div>
-      </app-card>
+      </div>
     </div>

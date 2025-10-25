@@ -27,6 +27,7 @@ export class SidebarComponent {
     { label: 'Scanner', route: '/dashboard/scanner', icon: '📊' },
     { label: 'Portfolio', route: '/dashboard/portfolio', icon: '💼' },
     { label: 'Analytics', route: '/dashboard/analytics', icon: '📈' },
+    { label: 'Broker', route: '/dashboard/broker', icon: '🔌' },
     { label: 'Settings', route: '/dashboard/settings', icon: '⚙️' }
   ];
 
