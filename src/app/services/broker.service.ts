@@ -10,7 +10,12 @@ import {
   BrokerAccountResponse,
   BrokerConnectionStatus,
   SyncResponse,
-  LiveQuote
+  LiveQuote,
+  BrokerPosition,
+  BrokerTrade,
+  PortfolioSummary,
+  BrokerBalance,
+  StockQuote
 } from '../models/broker.model';
 
 @Injectable({
@@ -165,5 +170,106 @@ export class BrokerService {
    */
   hasConnectedBroker(): boolean {
     return this.brokerAccounts().some(acc => acc.status === 'active');
+  }
+
+  /**
+   * Get active broker account ID (first active account)
+   */
+  getActiveBrokerAccountId(): number | null {
+    const activeAccount = this.brokerAccounts().find(acc => acc.status === 'active');
+    return activeAccount?.id ?? null;
+  }
+
+  /**
+   * Get portfolio positions from broker
+   */
+  getPositions(brokerAccountId?: number): Observable<BrokerPosition[]> {
+    const accountId = brokerAccountId ?? this.getActiveBrokerAccountId();
+
+    if (!accountId) {
+      return throwError(() => new Error('No active broker account'));
+    }
+
+    return this.http.get<BrokerPosition[]>(`${environment.apiUrl}/portfolio/positions`, {
+      params: { broker_account_id: accountId.toString() }
+    }).pipe(
+      catchError(error => {
+        console.error('Failed to fetch positions:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  /**
+   * Get trades from broker
+   */
+  getTrades(brokerAccountId?: number): Observable<BrokerTrade[]> {
+    const accountId = brokerAccountId ?? this.getActiveBrokerAccountId();
+
+    if (!accountId) {
+      return throwError(() => new Error('No active broker account'));
+    }
+
+    return this.http.get<BrokerTrade[]>(`${environment.apiUrl}/trades`, {
+      params: { broker_account_id: accountId.toString() }
+    }).pipe(
+      catchError(error => {
+        console.error('Failed to fetch trades:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  /**
+   * Get portfolio summary from broker
+   */
+  getPortfolioSummary(brokerAccountId?: number): Observable<PortfolioSummary> {
+    const accountId = brokerAccountId ?? this.getActiveBrokerAccountId();
+
+    if (!accountId) {
+      return throwError(() => new Error('No active broker account'));
+    }
+
+    return this.http.get<PortfolioSummary>(`${environment.apiUrl}/portfolio/summary`, {
+      params: { broker_account_id: accountId.toString() }
+    }).pipe(
+      catchError(error => {
+        console.error('Failed to fetch portfolio summary:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  /**
+   * Get account balance from broker
+   */
+  getBalance(brokerAccountId?: number): Observable<BrokerBalance> {
+    const accountId = brokerAccountId ?? this.getActiveBrokerAccountId();
+
+    if (!accountId) {
+      return throwError(() => new Error('No active broker account'));
+    }
+
+    return this.http.get<BrokerBalance>(`${environment.apiUrl}/portfolio/balance`, {
+      params: { broker_account_id: accountId.toString() }
+    }).pipe(
+      catchError(error => {
+        console.error('Failed to fetch balance:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  /**
+   * Get live quote for a specific stock symbol
+   */
+  getStockQuote(symbol: string): Observable<StockQuote> {
+    return this.http.get<StockQuote>(`${this.apiUrl}/quote/${symbol}`).pipe(
+      catchError(error => {
+        const errorMessage = error.error?.detail || `Failed to get quote for ${symbol}`;
+        console.error('Failed to fetch stock quote:', errorMessage);
+        return throwError(() => error);
+      })
+    );
   }
 }
